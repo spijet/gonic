@@ -54,16 +54,18 @@ func (c *Controller) ServeScrobble(r *http.Request) *spec.Response {
 		Preload("Artist").
 		First(track, id)
 	// scrobble with above info
-	err = lastfm.Scrobble(
-		c.DB.GetSetting("lastfm_api_key"),
-		c.DB.GetSetting("lastfm_secret"),
-		user.LastFMSession,
-		track,
+	err = lastfm.Scrobble(lastfm.ScrobbleOptions{
+		BaseAuthOptions: lastfm.BaseAuthOptions{
+			APIKey: c.DB.GetSetting("lastfm_api_key"),
+			Secret: c.DB.GetSetting("lastfm_secret"),
+		},
+		Session: user.LastFMSession,
+		Track:   track,
 		// clients will provide time in miliseconds, so use that or
 		// instead convert UnixNano to miliseconds
-		parsing.GetIntParamOr(r, "time", int(time.Now().UnixNano()/1e6)),
-		parsing.GetStrParamOr(r, "submission", "true") != "false",
-	)
+		StampMili:  parsing.GetIntParamOr(r, "time", int(time.Now().UnixNano()/1e6)),
+		Submission: parsing.GetStrParamOr(r, "submission", "true") != "false",
+	})
 	if err != nil {
 		return spec.NewError(0, "error when submitting: %v", err)
 	}
