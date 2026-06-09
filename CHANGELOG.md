@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.23.0](https://www.github.com/spijet/gonic/compare/v0.22.0...v0.23.0) (2026-06-09)
+
+
+### Features
+
+* **infocache:** don't commit empty row before upstream lookup ([5be4aff](https://www.github.com/spijet/gonic/commit/5be4afff55984f0b3f606b44a1a3e9c527ac8137))
+* **subsonic:** pad albumInfo notes with musicbrainz disambiguation ([fe9c018](https://www.github.com/spijet/gonic/commit/fe9c018ea38425ae6a0e285c14269d46efa76f3a))
+* **subsonic:** pad and cap transcoded bytes to estimation, with 3% headroom ([e4cf8ff](https://www.github.com/spijet/gonic/commit/e4cf8ff5c1f1227d7bf274630553a02d977cb95f)), closes [#704](https://www.github.com/spijet/gonic/issues/704)
+* **subsonic:** pad artistInfo biography with musicbrainz info ([db65b0d](https://www.github.com/spijet/gonic/commit/db65b0d66392f8fc9984d44de008b5a7924f1443))
+
 ## [0.22.0](https://www.github.com/sentriz/gonic/compare/v0.21.0...v0.22.0) (2026-06-08)
 
 
